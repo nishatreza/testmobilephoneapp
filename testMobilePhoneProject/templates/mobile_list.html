@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<table class="table table-borderless">
+
+    <thead class="border-bottom font-weight-bold">
+    <tr>
+        <td>Brand Name</td>
+        <td>Model No.</td>
+        <td>Color</td>
+        <td>Jan Code</td>
+        <td>Action</td>
+                <td>
+                    <a href="{% url 'mobile_insert' %}" class="btn btn-outline-success">
+            <i class="fas fa-plus"></i> Add New
+
+            </a>
+
+
+                </td>
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for mobile in mobiles %}
+<tr>
+    <td>{{mobile.brand_name}}</td>
+    <td>{{mobile.model}}</td>
+    <td>{{mobile.color}}</td>
+    <td>{{mobile.jan_code}}</td>
+
+        <td>
+            <a href="{% url 'mobile_update' mobile.id %}" class="btn text-secondary px-0">
+            <i class="far fa-edit fa-lg"></i>
+
+            </a>
+
+                   <form action="{% url 'mobile_delete' mobile.id %}" method="post" class="d-inline">
+                       {% csrf_token %}
+                       <button type="submit" class="btn">
+                           <i class="far fa-trash-alt fa-lg text-danger"></i>
+                       </button>
+
+
+                    </form>
+        </td>
+
+
+</tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
