@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import Mobile
 
 
@@ -12,4 +14,3 @@ class MobileForm(forms.ModelForm):
             'brand_name': 'Brand Name',
             'jan_code': 'JAN Code'
         }
-

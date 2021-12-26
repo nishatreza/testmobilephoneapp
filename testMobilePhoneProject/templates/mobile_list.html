@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block content %}
 
-<table class="table table-borderless">
+
+<div class="row">
+<div class="col-md-8">
+
+</div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="text" id="searchField" class="form-control" placeholder="Search for Model or Jan Code">
+        </div>
+    </div>
+</div>
+
+<div class="main-table">
+    <table class="table table-borderless">
 
     <thead class="border-bottom font-weight-bold">
     <tr>
+        <td>SI No.</td>
         <td>Brand Name</td>
         <td>Model No.</td>
         <td>Color</td>
@@ -28,12 +43,13 @@
     <tbody>
     {% for mobile in mobiles %}
 <tr>
+    <td>{{ forloop.counter }} </td>
     <td>{{mobile.brand_name}}</td>
     <td>{{mobile.model}}</td>
     <td>{{mobile.color}}</td>
     <td>{{mobile.jan_code}}</td>
 
-        <td>
+        <td style="display: flex;">
             <a href="{% url 'mobile_update' mobile.id %}" class="btn text-secondary px-0">
             <i class="far fa-edit fa-lg"></i>
 
@@ -55,5 +71,54 @@
     {% endfor %}
     </tbody>
 </table>
+
+
+</div>
+
+
+
+<!--output table from search box-->
+<div class="table-output">
+    <table class="table table-borderless">
+
+    <thead class="border-bottom font-weight-bold">
+    <tr>
+        <td>Brand Name</td>
+        <td>Model No.</td>
+        <td>Color</td>
+        <td>Jan Code</td>
+        <td>Action</td>
+                <td>
+                    <a href="{% url 'mobile_insert' %}" class="btn btn-outline-success">
+            <i class="fas fa-plus"></i> Add New
+
+            </a>
+
+
+                </td>
+
+
+    </tr>
+    </thead>
+    <tbody class="table-body-output">
+
+
+    </tbody>
+
+</table>
+
+
+</div>
+<div class="no-results" style="display:none">
+<div class="alert alert-danger" role="alert">
+  No results found!
+</div>
+
+</div>
+
+
+<script src="{% static 'js/searchMobile.js' %}">
+
+</script>
 
 {% endblock %}
