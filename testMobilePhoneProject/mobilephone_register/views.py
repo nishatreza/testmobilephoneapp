@@ -31,16 +31,7 @@ def mobile_form(request, id=0):
             model = form.cleaned_data['model']
             color = form.cleaned_data['color']
             jan_code = form.cleaned_data['jan_code']
-            if Mobile.objects.filter(brand_name=brand_name).exists():
-                messages.info(request, 'Brand name taken!')
-                return redirect('/')
-            elif Mobile.objects.filter(model=model).exists():
-                messages.info(request, 'Model No. taken!')
-                return redirect('/')
-            elif Mobile.objects.filter(color=color).exists():
-                messages.info(request, 'Color taken!')
-                return redirect('/')
-            elif Mobile.objects.filter(jan_code=jan_code).exists():
+            if Mobile.objects.filter(jan_code=jan_code).exists():
                 messages.info(request, 'Jan Code taken!')
                 return redirect('/')
             else:

@@ -12,5 +12,6 @@ class MobileForm(forms.ModelForm):
         fields = ('brand_name', 'model', 'color', 'jan_code')
         labels = {
             'brand_name': 'Brand Name',
+            'model': 'Model Name',
             'jan_code': 'JAN Code'
         }
